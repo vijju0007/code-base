@@ -1,0 +1,6 @@
+com\comcast\retailpos\poslogs\impl\RunAggregrator.class
+com\comcast\retailpos\poslogs\properties\PropertiesCache.class
+com\comcast\retailpos\poslogs\DBConn\DBConnection.class
+com\comcast\retailpos\poslogs\conversion\XmlConversion.class
+com\comcast\retailpos\poslogs\fields\POSLogsFields.class
+com\comcast\retailpos\poslogs\file\FileCreation.class

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!--Daily rolling file appender -->
+	<appender name="ROLLING"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${poslogaggregrator.loghome.dir}/poslogaggregrator.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${poslogaggregrator.loghome.dir}/archived/poslogaggregrator.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+	        <maxFileSize>1MB</maxFileSize>    
+            <totalSizeCap>10MB</totalSizeCap>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d||%-5p||%m||%C%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<root level="INFO">
+		<appender-ref ref="ROLLING" />
+    	<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>

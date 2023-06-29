@@ -1,0 +1,50 @@
+version: "3"
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - service-one
+      - service-two
+  service-one:
+    build:
+      context: ./service-one
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    depends_on:
+      - mysql
+  service-two:
+    build:
+      context: ./service-two
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082
+    depends_on:
+      - postgres
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: service_one_db
+      MYSQL_ROOT_PASSWORD: root_password
+  postgres:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: service_two_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
